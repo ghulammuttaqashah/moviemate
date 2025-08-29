@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'autoUpdate',       // Auto-update service worker
+      registerType: 'autoUpdate', // auto-update service worker
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'], // optional extra assets
       manifest: {
         name: 'MovieMate',
@@ -37,10 +37,14 @@ export default defineConfig({
             purpose: 'any maskable'
           }
         ]
+      },
+      workbox: {
+        navigateFallback: '/index.html', // ensures React routing works for unknown paths
+        navigateFallbackDenylist: [/^\/api\//], // don't fallback API requests
       }
     })
   ],
   build: {
-    outDir: 'dist', // default Vite output folder
+    outDir: 'dist', // default output folder
   }
 });

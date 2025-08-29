@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Toast from "./components/Toast";
+import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute"; // import it
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
             <Route path="/movies/:id" element={<MovieDetails />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
+           <Route path="*" element={<NotFound />} />
             <Route
               path="/dashboard"
               element={
