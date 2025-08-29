@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
-import GoogleButton from "../components/Googlebutton";
+import GoogleButton from "../components/GoogleButton";
 import { useAuth } from "../context/AuthContext";
 import axios from "../utils/axios";
 import toast from "react-hot-toast";
