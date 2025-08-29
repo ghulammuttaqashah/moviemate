@@ -1,4 +1,5 @@
-# 🎬 Your Personal Movie Hub
+# MovieMate
+## 🎬 Your Personal Movie Hub
 
 Discover, share, and vote for movies you love!  
 Search movies instantly from TMDB, add movies you like, upvote community picks, and join conversations with comments.
