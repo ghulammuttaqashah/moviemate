@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
+const { path } = require("pdfkit");
 
 // ============================
 // Helper: Generate JWT + Cookie
@@ -13,7 +14,7 @@ const generateToken = (res, userId) => {
   // Cookie settings for cross-domain
   res.cookie("jwt", token, {
     httpOnly: true,                       // can't be accessed by JS
-    secure: process.env.NODE_ENV === "production", // HTTPS only in prod
+    secure: true, // HTTPS only in prod
     sameSite: "none",                      // allow cross-site cookies
     maxAge: 7 * 24 * 60 * 60 * 1000,      // 7 days
   });
