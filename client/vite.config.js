@@ -18,7 +18,8 @@ export default defineConfig({
         theme_color: '#000000',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '/',
+        start_url: '/',   // root of your app
+        scope: '/',       // ensures PWA works for all routes
         icons: [
           {
             src: 'logo192.png',
@@ -39,12 +40,27 @@ export default defineConfig({
         ]
       },
       workbox: {
-        navigateFallback: '/index.html', // ensures React routing works for unknown paths
-        navigateFallbackDenylist: [/^\/api\//], // don't fallback API requests
-      }
+        // For React Router SPA support
+        navigateFallback: '/index.html',
+        navigateFallbackDenylist: [
+          /^\/api\//,        // prevent API calls from being caught
+          /\/auth\//,        // prevent auth routes from being caught
+          /\/tmdb\//         // prevent TMDB API calls
+        ],
+      },
     })
   ],
   build: {
-    outDir: 'dist', // default output folder
+    outDir: 'dist',  // default output folder
+  },
+  server: {
+    // Optional: proxy API calls during dev
+    proxy: {
+      '/api': {
+        target: 'https://moviemate-cak6.onrender.com',
+        changeOrigin: true,
+        secure: true,
+      }
+    }
   }
 });
