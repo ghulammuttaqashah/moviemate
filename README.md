@@ -17,11 +17,12 @@ Search movies instantly from TMDB, add movies you like, upvote community picks, 
   - [TMDB Routes](#tmdb-routes-apitmdb)
   - [Movie Routes](#movie-routes-apimovies)
   - [Comment Routes](#comment-routes-apicomments)
-- [Installation & Setup](#installation--setup)
+- [Installation & Setup](#installation-setup)
 - [Usage](#usage)
 - [Tech Stack](#tech-stack)
 - [Contributing](#contributing)
 - [License](#license)
+
 
 ---
 
