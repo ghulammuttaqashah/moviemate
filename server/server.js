@@ -3,9 +3,9 @@ const dotenv = require("dotenv");
 dotenv.config({ quiet: true });
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const session = require("express-session");
 const connectDB = require("./config/db");
 const passport = require("./config/passport"); // Passport config
+const jwt = require("jsonwebtoken");
 
 // Routes
 const userRoutes = require("./routes/userRoutes");
@@ -25,31 +25,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true,
+    origin: process.env.CLIENT_URL, // must match frontend exactly
+    credentials: true,              // allow cookies cross-domain
   })
 );
 
 // ------------------------
-// SESSION MIDDLEWARE (must come BEFORE passport.session)
-// ------------------------
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "secretkey", // set strong secret
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false, // set true if using HTTPS
-      httpOnly: true,
-    },
-  })
-);
-
-// ------------------------
-// Initialize Passport
+// Initialize Passport (for OAuth)
 // ------------------------
 app.use(passport.initialize());
-app.use(passport.session());
 
 // ------------------------
 // Routes
@@ -73,3 +57,4 @@ app.use("/api/comments", commentRoutes);
 // ------------------------
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+

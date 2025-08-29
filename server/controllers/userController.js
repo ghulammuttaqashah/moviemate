@@ -10,16 +10,16 @@ const generateToken = (res, userId) => {
     expiresIn: "7d",
   });
 
+  // Cookie settings for cross-domain
   res.cookie("jwt", token, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // only https in production
-    sameSite: "none",
-    maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+    httpOnly: true,                       // can't be accessed by JS
+    secure: process.env.NODE_ENV === "production", // HTTPS only in prod
+    sameSite: "none",                      // allow cross-site cookies
+    maxAge: 7 * 24 * 60 * 60 * 1000,      // 7 days
   });
 
   return token;
 };
-
 // ============================
 // Signup with Email
 // ============================
