@@ -14,7 +14,7 @@ const generateToken = (res, userId) => {
   // Cookie settings for cross-domain
   res.cookie("jwt", token, {
     httpOnly: true,                       // can't be accessed by JS
-    secure: true, // HTTPS only in prod
+    secure: process.env.NODE_ENV === "production", // HTTPS only in prod
     sameSite: "none",                      // allow cross-site cookies
     maxAge: 7 * 24 * 60 * 60 * 1000,      // 7 days
   });
