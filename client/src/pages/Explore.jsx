@@ -3,6 +3,7 @@ import axios from "../utils/axios";
 import MovieCardExplore from "../components/MovieCardExplore";
 import MovieDetails from "./MovieDetails"; // your details page
 import toast from "react-hot-toast";
+import Loader from "../components/Loader"; // make sure you have a Loader component
 
 export default function Explore({ currentUserId }) {
   const [movies, setMovies] = useState([]);
@@ -43,10 +44,10 @@ export default function Explore({ currentUserId }) {
       </div>
 
       {/* Movies List / Loader / No Movies */}
-      {movies.length === 0 ? (
-        <p className="text-gray-400 text-center">No movies added by anyone.</p>
-      ) : loading ? (
+      {loading ? (
         <Loader />
+      ) : movies.length === 0 ? (
+        <p className="text-gray-400 text-center">No movies added by anyone.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {movies.map((movie) => (
