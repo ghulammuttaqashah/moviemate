@@ -28,12 +28,12 @@ function Footer() {
         {/* Social Media */}
         <div>
           <h3 className="text-lg font-bold text-gray-200 mb-2">Connect with Us</h3>
-          <div className="flex space-x-4">
+          <div className="flex space-x-6">
             <a href="https://github.com/ghulammuttaqashah" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300 transition">
-              <Github size={20} />
+              <Github size={40} />
             </a>
             <a href="https://www.linkedin.com/in/ghulam-muttaqa-shah" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300 transition">
-              <Linkedin size={20} />
+              <Linkedin size={40} />
             </a>
           </div>
         </div>
