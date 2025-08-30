@@ -114,27 +114,24 @@ const googleAuth = async (req, res) => {
 // ============================
 const logout = async (req, res) => {
   try {
-    // Destroy passport session if exists
-    req.logout(function (err) {
-      if (err) {
-        console.error("Logout error:", err);
-        return res.status(500).json({ message: "Logout failed" });
-      }
+    // if you’re using passport/session
+    req.logout?.(() => {});
+    req.session?.destroy?.(() => {});
 
-      // Clear session cookie if using express-session
-      req.session?.destroy(() => {});
-
-      // Clear JWT cookie if using token-based auth
-      res.clearCookie("jwt");
-
-      res.json({ message: "Logged out successfully" });
+    // Clear cookie with same settings as in generateToken
+    res.clearCookie("jwt", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production", // must match
+      sameSite: "none",                              // must match
+      path: "/",                                     // default path
     });
+
+    return res.json({ message: "Logged out successfully" });
   } catch (error) {
-    console.error("Logout exception:", error);
-    res.status(500).json({ message: error.message });
+    console.error("Logout error:", error);
+    return res.status(500).json({ message: error.message });
   }
 };
-
 // ============================
 // Get Current Authenticated User
 // ============================
