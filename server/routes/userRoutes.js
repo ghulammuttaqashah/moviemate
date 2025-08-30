@@ -26,7 +26,7 @@ router.get("/me", authMiddleware, getCurrentUser);
 // Google OAuth callback
 router.get(
   "/google/callback",
-  passport.authenticate("google", { failureRedirect: `${process.env.CLIENT_URL}/login` }),
+  passport.authenticate("google", { failureRedirect: `${process.env.CLIENT_URL}/login`,session: false,  }),
   googleAuth // controller handles JWT + redirect to dashboard
 );
 
