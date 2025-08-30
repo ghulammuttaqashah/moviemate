@@ -41,7 +41,7 @@ function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-gray-800 text-center py-3 text-sm text-gray-500">
-        © {new Date().getFullYear()} MovieMate. All rights reserved.
+        © {new Date().getFullYear()} MovieMate. All rights reserved. Developed by Ghulam Muttaqa
       </div>
     </footer>
   );
