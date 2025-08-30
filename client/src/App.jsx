@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
