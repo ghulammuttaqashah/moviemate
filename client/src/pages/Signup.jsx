@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import GoogleButton from "../components/GoogleButton";
@@ -9,9 +9,16 @@ import toast from "react-hot-toast";
 function Signup() {
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", password: "" });
-  const [loading, setLoading] = useState(false); // loader state
+  const [loading, setLoading] = useState(false);
   const { setUser } = useAuth();
   const navigate = useNavigate();
+
+  const nameRef = useRef(null); // 👈 create ref for name input
+
+  // Focus name input on mount
+  useEffect(() => {
+    nameRef.current?.focus();
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -48,6 +55,7 @@ function Signup() {
           <div className="mb-4">
             <label className="block font-bold text-gray-200 mb-1">Full Name</label>
             <input
+              ref={nameRef} // 👈 attach ref here
               type="text"
               name="name"
               value={form.name}

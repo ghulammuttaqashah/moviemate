@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import GoogleButton from "../components/GoogleButton";
@@ -12,6 +12,13 @@ function Login() {
   const [loading, setLoading] = useState(false);
   const { setUser } = useAuth();
   const navigate = useNavigate();
+
+  const emailRef = useRef(null); // 👈 create ref
+
+  // Focus email input on mount
+  useEffect(() => {
+    emailRef.current?.focus();
+  }, []);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -48,6 +55,7 @@ function Login() {
           <div className="mb-4">
             <label className="block font-bold text-gray-200 mb-1">Email</label>
             <input
+              ref={emailRef} // 👈 attach ref
               type="email"
               name="email"
               value={form.email}

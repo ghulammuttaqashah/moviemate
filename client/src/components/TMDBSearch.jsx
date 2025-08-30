@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import axios from "../utils/axios";
 import Loader from "./Loader";
 import MovieCard from "./MovieCard";
@@ -10,13 +10,6 @@ function TMDBSearch() {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
-
-  const inputRef = useRef(null); // 👈 create ref
-
-  // Focus input on mount
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
 
   // Debounced search effect
   useEffect(() => {
@@ -68,7 +61,6 @@ function TMDBSearch() {
       {/* Search Box */}
       <div className="flex mb-6 justify-center">
         <input
-          ref={inputRef} // 👈 attach ref
           type="text"
           placeholder="Search movies..."
           value={query}
