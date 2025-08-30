@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -16,7 +17,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     await logout();
-     toast.success("Logged out successfully!"); 
+      
     navigate("/login");
   };
 
