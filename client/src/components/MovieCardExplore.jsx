@@ -4,7 +4,7 @@ import axios from "../utils/axios";
 import { useAuth } from "../context/AuthContext";
 
 export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
-  const { user } = useAuth(); // <-- get login status from AuthContext
+  const { user } = useAuth(); // get login status from AuthContext
   const { title, overview, posterPath, votes, addedBy, _id, tmdbId } = movie;
 
   const [userVote, setUserVote] = useState(false);
@@ -14,6 +14,7 @@ export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
 
   const handleVote = async (e) => {
     e.stopPropagation();
+    e.preventDefault();
     if (!user) {
       toast.error("Please login first");
       return;
@@ -32,6 +33,7 @@ export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
 
   const handleAddComment = async (e) => {
     e.stopPropagation();
+    e.preventDefault();
     if (!user) {
       toast.error("Please login first");
       return;
@@ -54,10 +56,7 @@ export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
   };
 
   return (
-    <div
-      className="bg-gray-900 border border-gray-800 rounded-2xl shadow-md flex flex-col h-full cursor-pointer hover:scale-105 transition-transform"
-      onClick={() => onClick(movie._id)}
-    >
+    <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-md flex flex-col h-full">
       {/* Poster */}
       {posterPath ? (
         <img
@@ -74,13 +73,10 @@ export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
       {/* Info */}
       <div className="p-4 flex flex-col flex-grow justify-between">
         <div>
-          {/* Title with underline on hover */}
+          {/* Title: only this is clickable */}
           <h3
-            className="text-lg font-bold text-indigo-400 mb-2 hover:underline"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClick(movie._id);
-            }}
+            className="text-lg font-bold text-indigo-400 mb-2 hover:underline cursor-pointer"
+            onClick={() => onClick(movie._id)}
           >
             {title}
           </h3>
@@ -89,7 +85,7 @@ export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
             {overview || "No overview available."}
           </p>
 
-          <p className="text-m font-bold  text-white mb-2">
+          <p className="text-m font-bold text-white mb-2">
             Added by: {addedBy?.name || "Unknown"}
           </p>
 
