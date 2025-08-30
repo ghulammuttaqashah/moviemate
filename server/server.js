@@ -52,6 +52,12 @@ app.use("/api/movies", movieRoutes);
 // Comments routes (add/update/delete/get)
 app.use("/api/comments", commentRoutes);
 
+app.use((err, req, res, next) => {
+  console.error("🔥 Server Error:", err.stack);
+  res.status(500).json({ message: "Internal Server Error", error: err.message });
+});
+
+
 // ------------------------
 // Start server
 // ------------------------
