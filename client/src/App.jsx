@@ -13,6 +13,12 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute"; // import it
 
 function App() {
+   useEffect(() => {
+    toast(
+      "🍪 To stay logged in, please allow third-party cookies in your browser.",
+      { duration: 8000 }
+    );
+  }, []);
   return (
     <Router>
       <div className="flex flex-col min-h-screen bg-gray-950 text-gray-100">
