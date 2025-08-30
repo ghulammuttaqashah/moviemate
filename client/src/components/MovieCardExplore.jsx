@@ -13,23 +13,25 @@ export default function MovieCardExplore({ movie, onClick, refreshMovies }) {
   const [loadingComment, setLoadingComment] = useState(false);
 
   const handleVote = async (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-    if (!user) {
-      toast.error("Please login first");
-      return;
-    }
+  e.stopPropagation();
+  e.preventDefault(); // <-- add preventDefault
+  if (!user) {
+    toast.error("Please login first");
+    return;
+  }
 
-    try {
-      await axios.post(`/movies/${_id}/vote`);
-      setUserVote(true);
-      refreshMovies();
-      toast.success("Voted!");
-    } catch (err) {
-      console.error(err);
-      toast.error("You can only vote once");
-    }
-  };
+  try {
+    await axios.post(`/movies/${_id}/vote`);
+    setUserVote(true);
+    // Optimistically update the votes locally
+    movie.votes = (movie.votes || 0) + 1;
+    toast.success("Voted!");
+  } catch (err) {
+    console.error(err);
+    toast.error("You can only vote once");
+  }
+};
+
 
   const handleAddComment = async (e) => {
     e.stopPropagation();
