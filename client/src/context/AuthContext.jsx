@@ -31,8 +31,9 @@ export const AuthProvider = ({ children }) => {
  const logout = async () => {
   try {
     await axios.get("/auth/logout", { withCredentials: true });
+    toast.success("Logged out successfully!"); 
     setUser(null);
-    toast.success("Logged out successfully!"); // ✅ toast here
+    // ✅ toast here
   } catch (err) {
     console.error("Logout failed:", err);
     toast.error("Logout failed, please try again.");
