@@ -52,7 +52,7 @@ function Navbar() {
           {isInstallable && (
             <button
               onClick={promptInstall}
-              className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white font-bold transition"
+              className="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-bold transition"
             >
               📲 Install App
             </button>
@@ -78,7 +78,7 @@ function Navbar() {
               </Link>
               <Link
                 to="/signup"
-                className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white transition font-bold"
+                className="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white transition font-bold"
               >
                 Sign Up
               </Link>
@@ -123,7 +123,7 @@ function Navbar() {
                   promptInstall();
                   setIsOpen(false);
                 }}
-                className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white font-bold w-32 text-center transition"
+                className="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white font-bold w-32 text-center transition"
               >
                 📲 Install App
               </button>
@@ -151,7 +151,7 @@ function Navbar() {
                 <Link
                   to="/signup"
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white w-32 text-center transition font-bold"
+                  className="px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white w-32 text-center transition font-bold"
                 >
                   Sign Up
                 </Link>

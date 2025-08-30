@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Github } from "lucide-react";
+import { Github, Linkedin } from "lucide-react"; // 👈 import only Github and Linkedin
 
 function Footer() {
   return (
@@ -29,10 +29,12 @@ function Footer() {
         <div>
           <h3 className="text-lg font-bold text-gray-200 mb-2">Connect with Us</h3>
           <div className="flex space-x-4">
-            <a href="#" className="hover:text-indigo-300 transition"><Facebook size={20} /></a>
-            <a href="#" className="hover:text-indigo-300 transition"><Twitter size={20} /></a>
-            <a href="#" className="hover:text-indigo-300 transition"><Instagram size={20} /></a>
-            <a href="#" className="hover:text-indigo-300 transition"><Github size={20} /></a>
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300 transition">
+              <Github size={20} />
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-300 transition">
+              <Linkedin size={20} />
+            </a>
           </div>
         </div>
       </div>
