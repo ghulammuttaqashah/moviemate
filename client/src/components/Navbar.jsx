@@ -2,14 +2,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-import { usePWAInstall } from "../hooks/usePWAInstall"; // 👈 import your hook
+import { usePWAInstall } from "../hooks/usePWAInstall";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const { isInstallable, promptInstall } = usePWAInstall(); // 👈 use the hook
+  const { isInstallable, promptInstall } = usePWAInstall();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -52,7 +52,7 @@ function Navbar() {
           {isInstallable && (
             <button
               onClick={promptInstall}
-              className="ml-4 px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm transition"
+              className="ml-4 px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white font-bold transition"
             >
               📲 Install App
             </button>
@@ -78,7 +78,7 @@ function Navbar() {
               </Link>
               <Link
                 to="/signup"
-                className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white transition"
+                className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white transition font-bold"
               >
                 Sign Up
               </Link>
@@ -123,7 +123,7 @@ function Navbar() {
                   promptInstall();
                   setIsOpen(false);
                 }}
-                className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white w-32 text-center transition"
+                className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white font-bold w-32 text-center transition"
               >
                 📲 Install App
               </button>
@@ -151,7 +151,7 @@ function Navbar() {
                 <Link
                   to="/signup"
                   onClick={() => setIsOpen(false)}
-                  className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white w-32 text-center transition"
+                  className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white w-32 text-center transition font-bold"
                 >
                   Sign Up
                 </Link>
