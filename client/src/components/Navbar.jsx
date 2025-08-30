@@ -2,12 +2,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-
+import { usePWAInstall } from "../hooks/usePWAInstall"; // 👈 import your hook
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+
+  const { isInstallable, promptInstall } = usePWAInstall(); // 👈 use the hook
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -17,7 +19,6 @@ function Navbar() {
 
   const handleLogout = async () => {
     await logout();
-      
     navigate("/login");
   };
 
@@ -30,7 +31,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6">
+        <div className="hidden md:flex space-x-6 items-center">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
@@ -46,6 +47,16 @@ function Navbar() {
               {item.name}
             </NavLink>
           ))}
+
+          {/* PWA Install Button */}
+          {isInstallable && (
+            <button
+              onClick={promptInstall}
+              className="ml-4 px-3 py-1 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm transition"
+            >
+              📲 Install App
+            </button>
+          )}
         </div>
 
         {/* Auth Buttons */}
@@ -104,6 +115,19 @@ function Navbar() {
                 {item.name}
               </NavLink>
             ))}
+
+            {/* PWA Install Button (Mobile) */}
+            {isInstallable && (
+              <button
+                onClick={() => {
+                  promptInstall();
+                  setIsOpen(false);
+                }}
+                className="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white w-32 text-center transition"
+              >
+                📲 Install App
+              </button>
+            )}
 
             {user ? (
               <button
