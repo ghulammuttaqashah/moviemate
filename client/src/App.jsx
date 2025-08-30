@@ -18,7 +18,7 @@ function App() {
    useEffect(() => {
     toast(
       "🍪 To login, please allow third-party cookies in your browser.",
-      { duration: 1000 }
+      { duration: 2500 }
     );
   }, []);
   return (

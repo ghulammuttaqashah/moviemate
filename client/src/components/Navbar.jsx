@@ -52,7 +52,7 @@ function Navbar() {
           {isInstallable && (
             <button
               onClick={promptInstall}
-              className="ml-4 px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white font-bold transition"
+              className="px-4 py-2 rounded-lg bg-indigo-400 hover:bg-indigo-500 text-white font-bold transition"
             >
               📲 Install App
             </button>
