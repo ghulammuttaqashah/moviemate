@@ -15,7 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute"; // import it
 function App() {
    useEffect(() => {
     toast(
-      "🍪 To stay logged in, please allow third-party cookies in your browser.",
+      "🍪 To login, please allow third-party cookies in your browser.",
       { duration: 8000 }
     );
   }, []);
