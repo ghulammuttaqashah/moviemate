@@ -27,14 +27,16 @@ export const AuthProvider = ({ children }) => {
     setUser(data.user);
   };
 
-  const logout = async () => {
-    try {
-      await axios.get("/auth/logout", { withCredentials: true });
-      setUser(null);
-    } catch (err) {
-      console.error("Logout failed:", err);
-    }
-  };
+ const logout = async () => {
+  try {
+    await axios.get("/auth/logout", { withCredentials: true });
+    setUser(null);
+    toast.success("Logged out successfully!"); // ✅ toast here
+  } catch (err) {
+    console.error("Logout failed:", err);
+    toast.error("Logout failed, please try again.");
+  }
+};
 
   return (
     <AuthContext.Provider value={{ user, loading, login, logout, setUser }}>

@@ -7,10 +7,11 @@ const ProtectedRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const toastShown = useRef(false);
 
-  if (loading) return null; // wait until auth is checked
+  if (loading) return null;
 
   if (!user) {
-    if (!toastShown.current) {
+    // only show toast if user tried to access protected route manually
+    if (!toastShown.current && window.location.pathname === "/dashboard") {
       toast.error("You must be logged in to access the dashboard!");
       toastShown.current = true;
     }
